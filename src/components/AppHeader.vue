@@ -8,7 +8,7 @@
         <a class="item">
           Gallery
         </a>
-        <a class="item">
+        <a class="item" @click="increment">
           Upload
         </a>
         <a class="item">
@@ -20,7 +20,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    increment() {
+      this.$store.commit('increment');
+      console.log(this.$store.state.count);
+    }
+  }
+};
 </script>
 
 <style></style>
