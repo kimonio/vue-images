@@ -4,15 +4,20 @@
       <a href="/" class="active item">
         Vue Images
       </a>
-      <div class="right menu">
-        <a class="item">
+      <div class="right menu" v-if="isLoggedIn">
+        <a class="ui item">
           Gallery
         </a>
-        <a class="item" @click="increment">
+        <a class="ui item">
           Upload
         </a>
-        <a class="item">
+        <a class="ui item" @click="logout">
           Logout
+        </a>
+      </div>
+      <div class="right menu">
+        <a class="ui item" @click="login">
+          Login
         </a>
       </div>
     </div>
@@ -20,13 +25,21 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+
 export default {
+  name: 'AppHeader',
   methods: {
-    increment() {
-      this.$store.commit('increment');
-      console.log(this.$store.state.count);
-    }
-  }
+    ...mapActions([
+      'login',
+      'logout'
+    ])
+  },
+  computed: {
+    ...mapGetters([
+      'isLoggedIn',
+    ])
+  },
 };
 </script>
 
